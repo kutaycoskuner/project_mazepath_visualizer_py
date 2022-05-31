@@ -1,9 +1,11 @@
 #
 # ==== Libraries
-import curses                       # :: main module
-from curses import wrapper          # :: wrapper
-import queue                        # :: queue data structure
-import time                         # :: for implementing delay
+import curses                           # :: main module
+from curses import wrapper              # :: wrapper
+import queue                            # :: queue data structure
+import time                             # :: for implementing delay
+from argparse import ArgumentParser     # :: to add command line arguments 
+# import sys                            # :: to add command line arguments
 
 
 #==== Test Data
@@ -40,10 +42,12 @@ def find_linked(maze, row, col):
 
     return linked
 
-def find_path(maze, stdscr):
+def find_path(maze, stdscr, delay):
     start = "O"
     end = "X"
     start_pos = find_start(maze, start)
+    if delay == None:
+        delay = 0.0
 
     nodeQue = queue.Queue()
     nodeQue.put((start_pos, [start_pos]))           # :: node, path
@@ -56,7 +60,7 @@ def find_path(maze, stdscr):
         stdscr.clear()  # :: clear entire screen
         print_maze(maze, stdscr, path)
         stdscr.refresh()
-        time.sleep(0.2)
+        time.sleep(delay)
         
         if maze[row][col] == end:
             return path
@@ -89,6 +93,15 @@ def print_maze(maze, stdscr, path=[]):
 # ==== Main
 def main(stdscr):   # :: standard output screen
 
+    # :: argument decleration
+    parser = ArgumentParser(description='Visualize path in MxN Maze')
+    parser.add_argument('-t', metavar='delay', type=float,
+                    help='delay time on visualization in seconds')
+
+    args = parser.parse_args()
+    # print(args.t)
+    # return
+
     # :: creating colors
     curses.init_pair(1,curses.COLOR_BLUE, curses.COLOR_BLACK)
     curses.init_pair(2,curses.COLOR_RED, curses.COLOR_BLACK)
@@ -98,7 +111,7 @@ def main(stdscr):   # :: standard output screen
     # stdscr.addstr(2,2, "hello world", blue_black) # :: top left corner of the screen 
     # print_maze(maze, stdscr)
     # stdscr.refresh()
-    find_path(maze, stdscr)
+    find_path(maze, stdscr, args.t)
     stdscr.getch()
 
 # ==== Initialize
