@@ -23,20 +23,21 @@ maze = [
 
 # ==== Functions
 def read_input(file_path):
-    try:
-        file = open(file_path)
-    except IOError:
-        print('I could not access the file')
-        return None
-    else:
-        with file as data:
-            lines = []
-            for line in data:
-                lines.append([])
-                for char in line:
-                    if not char == "\n":
-                        lines[-1].append(char)
-        return lines
+    if file_path != None:
+        try:
+            file = open(file_path)
+        except IOError:
+            print('I could not access the file')
+            return None
+        else:
+            with file as data:
+                lines = []
+                for line in data:
+                    lines.append([])
+                    for char in line:
+                        if char != "\n" and char != " ":
+                            lines[-1].append(char)
+            return lines
 
 def find_start(maze, start):
     for ii, row in enumerate(maze):
@@ -58,14 +59,18 @@ def find_linked(maze, row, col):
 
     return linked
 
-def find_path(maze, stdscr, delay):
+def find_path(maze, stdscr, delay, df):
     start = "O"
     end = "X"
     start_pos = find_start(maze, start)
+    
     if delay == None:
         delay = 0.0
-
-    nodeQue = queue.Queue()
+    if df != None:
+        nodeQue = queue.LifoQueue()
+    else:
+        nodeQue = queue.Queue()
+    
     nodeQue.put((start_pos, [start_pos]))           # :: node, path
     visited = set()
 
@@ -120,6 +125,9 @@ def adapt_input(input, start="0", end="1", open=".", closed="#"):
 # ==== Main
 def main(stdscr):   # :: standard output screen
 
+    # :: variables
+    input = maze
+
     # :: argument decleration
     parser = ArgumentParser(description='Visualize path in MxN Maze')
     parser.add_argument('-t', metavar='delay', type=float,
@@ -127,14 +135,19 @@ def main(stdscr):   # :: standard output screen
 
     parser.add_argument('-d', metavar='data', type=str,
                     help='data path for visualization')
+
+    parser.add_argument('-df', nargs='?', const=1,       
+                    help='apply depth first search')
+
+    parser.add_argument('-bf', nargs='?', const=1,        
+                    help='apply breadth first search')
+    
     args = parser.parse_args()
-    
-    
+
     # todo validate args
-
-    
-    maze = adapt_input(read_input(args.d))
-
+    # :: arg validation data
+    if read_input(args.d) != None:
+        input = adapt_input(read_input(args.d))
     # :: creating colors
     curses.init_pair(1,curses.COLOR_BLUE, curses.COLOR_BLACK)
     curses.init_pair(2,curses.COLOR_RED, curses.COLOR_BLACK)
@@ -144,7 +157,7 @@ def main(stdscr):   # :: standard output screen
     # stdscr.addstr(2,2, "hello world", blue_black) # :: top left corner of the screen 
     # print_maze(maze, stdscr)
     # stdscr.refresh()
-    find_path(maze, stdscr, args.t)
+    find_path(input, stdscr, args.t, args.df)
     stdscr.getch()
 
 # ==== Initialize

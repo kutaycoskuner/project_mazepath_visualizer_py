@@ -12,6 +12,9 @@
 # Theory
 
 # Notes
+- argument types
+    - binary | discrete | continious | unknown
+    - mandatory | optional
 
 # How to
 - <parsing command line arguments>
