@@ -22,6 +22,22 @@ maze = [
 ]
 
 # ==== Functions
+def read_input(file_path):
+    try:
+        file = open(file_path)
+    except IOError:
+        print('I could not access the file')
+        return None
+    else:
+        with file as data:
+            lines = []
+            for line in data:
+                lines.append([])
+                for char in line:
+                    if not char == "\n":
+                        lines[-1].append(char)
+        return lines
+
 def find_start(maze, start):
     for ii, row in enumerate(maze):
         for jj, value in enumerate(row):
@@ -89,7 +105,18 @@ def print_maze(maze, stdscr, path=[]):
             else:    
                 stdscr.addstr(ii, jj*2, value, blue)
 
-
+def adapt_input(input, start="0", end="1", open=".", closed="#"):
+    for ii, line in enumerate(input):
+        for jj, char in enumerate(line):
+            if char == start:
+                input[ii][jj] = "O"
+            if char == end:
+                input[ii][jj] = "X"
+            if char == open:
+                input[ii][jj] = " "
+            if char == closed:
+                input[ii][jj] = "#"
+    return input
 # ==== Main
 def main(stdscr):   # :: standard output screen
 
@@ -98,9 +125,15 @@ def main(stdscr):   # :: standard output screen
     parser.add_argument('-t', metavar='delay', type=float,
                     help='delay time on visualization in seconds')
 
+    parser.add_argument('-d', metavar='data', type=str,
+                    help='data path for visualization')
     args = parser.parse_args()
-    # print(args.t)
-    # return
+    
+    
+    # todo validate args
+
+    
+    maze = adapt_input(read_input(args.d))
 
     # :: creating colors
     curses.init_pair(1,curses.COLOR_BLUE, curses.COLOR_BLACK)
