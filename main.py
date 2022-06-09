@@ -59,7 +59,7 @@ def find_linked(maze, row, col):
 
     return linked
 
-def find_path(maze, stdscr, delay, df):
+def find_path(maze, stdscr, delay, df, color_path, color_obs):
     start = "O"
     end = "X"
     start_pos = find_start(maze, start)
@@ -79,7 +79,7 @@ def find_path(maze, stdscr, delay, df):
         row, col = current_pos
         
         stdscr.clear()  # :: clear entire screen
-        print_maze(maze, stdscr, path)
+        print_maze(maze, stdscr, color_path, color_obs,  path)
         stdscr.refresh()
         time.sleep(delay)
         
@@ -99,16 +99,13 @@ def find_path(maze, stdscr, delay, df):
             nodeQue.put((link, new_path))
             visited.add(link)
 
-def print_maze(maze, stdscr, path=[]):
-    blue = curses.color_pair(1)
-    red = curses.color_pair(2)
-
+def print_maze(maze, stdscr, color_path, color_obs, path=[]):
     for ii, row in enumerate(maze):
         for jj, value in enumerate(row):
             if (ii, jj) in path:
-                stdscr.addstr(ii, jj*2, "X", red)
+                stdscr.addstr(ii, jj*2, "X", color_path)
             else:    
-                stdscr.addstr(ii, jj*2, value, blue)
+                stdscr.addstr(ii, jj*2, value, color_obs)
 
 def adapt_input(input, start="0", end="1", open=".", closed="#"):
     for ii, line in enumerate(input):
@@ -122,42 +119,77 @@ def adapt_input(input, start="0", end="1", open=".", closed="#"):
             if char == closed:
                 input[ii][jj] = "#"
     return input
+
+def select_color(color=None):
+    color_red = curses.init_pair(1,curses.COLOR_RED, curses.COLOR_BLACK)
+    color_green = curses.init_pair(2,curses.COLOR_GREEN, curses.COLOR_BLACK)
+    color_blue = curses.init_pair(3,curses.COLOR_BLUE, curses.COLOR_BLACK)
+
+    if color != None:
+        color = color.lower()
+        if color == "red":
+            return curses.color_pair(1)
+        if color == "green":
+            return curses.color_pair(2)
+        if color == "blue":
+            return curses.color_pair(3)
+    return None
+
+
+
 # ==== Main
 def main(stdscr):   # :: standard output screen
 
     # :: variables
     input = maze
 
-    # :: argument decleration
+    # == argument decleration
     parser = ArgumentParser(description='Visualize path in MxN Maze')
+    
+    # :: value params
     parser.add_argument('-t', metavar='delay', type=float,
                     help='delay time on visualization in seconds')
 
     parser.add_argument('-d', metavar='data', type=str,
                     help='data path for visualization')
 
+    # :: binary params
     parser.add_argument('-df', nargs='?', const=1,       
                     help='apply depth first search')
 
     parser.add_argument('-bf', nargs='?', const=1,        
                     help='apply breadth first search')
+
+    # :: discrete params
+    parser.add_argument('-cp', type=str,
+                        choices=['red', "green", "blue"],
+                        help="choose path color for maze")
+
+    parser.add_argument('-co', type=str,
+                        choices=['red', "green", "blue"],
+                        help="choose obstacle color for maze")
     
     args = parser.parse_args()
 
     # todo validate args
-    # :: arg validation data
+    # == arg validation data
     if read_input(args.d) != None:
         input = adapt_input(read_input(args.d))
-    # :: creating colors
-    curses.init_pair(1,curses.COLOR_BLUE, curses.COLOR_BLACK)
-    curses.init_pair(2,curses.COLOR_RED, curses.COLOR_BLACK)
-    blue_black = curses.color_pair(1)
 
-    # stdscr.clear()  # :: clear entire screen
-    # stdscr.addstr(2,2, "hello world", blue_black) # :: top left corner of the screen 
-    # print_maze(maze, stdscr)
-    # stdscr.refresh()
-    find_path(input, stdscr, args.t, args.df)
+    # :: creating colors
+    color_path, color_obs = None, None
+    if args.cp != None:
+        color_path = select_color(args.cp)
+    if color_path == None:
+        color_path = select_color('green')
+    
+    if args.co != None:
+        color_obs = select_color(args.co)
+    if color_obs == None:
+        color_obs = select_color('blue')
+            
+    # == calling main algorithm
+    find_path(input, stdscr, args.t, args.df, color_path, color_obs)
     stdscr.getch()
 
 # ==== Initialize

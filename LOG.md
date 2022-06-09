@@ -8,11 +8,13 @@
     - [x] 31-May-2022 add command line option to specify sleep timer. ex: -sleep 0.3
     - [x] 31-May-2022 add command line option to speify maze layout via text file -in ".data/maze1.txt" 
     - [x] 31-May-2022 add clo to specify search strategy. ex: -dfs, -bfs
-    - 31-May-2022 add clo color option. ex: -color_maze blue -color_path red
+    - [x] 09-Jun-2022 31-May-2022 add clo color option. ex: -color_maze blue -color_path red
 - 31-May-2022 search the web for python gui lib and find one that supports pixel plotting for drawing the maze
     - buttons and animation control
+- 31-May-2022 fix broken mazes or defense
 
 # Problems
+- 05-Jun-2022  py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
 
 # Keys - Discretized Actions 1.1
 - org: organization, decisions, notebook changes
@@ -37,6 +39,7 @@
 - push
 
 # LOG
+- 09-Jun-2022 0.14      add: command line argument: opt red/green/blue color selection for obstacle and path
 - 31-May-2022 0.13      add: command line argument: opt select search algorithm df|bf
 - 31-May-2022 0.12      add: command line argument: opt data path
 - 31-May-2022 0.11      add: command line argument: opt time delay

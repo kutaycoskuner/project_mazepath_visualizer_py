@@ -13,7 +13,7 @@
 
 # Notes
 - argument types
-    - binary | discrete | continious | unknown
+    - binary | discrete | value
     - mandatory | optional
 
 # How to
