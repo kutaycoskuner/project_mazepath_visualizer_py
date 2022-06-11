@@ -10,11 +10,17 @@
     - [x] 31-May-2022 add clo to specify search strategy. ex: -dfs, -bfs
     - [x] 09-Jun-2022 31-May-2022 add clo color option. ex: -color_maze blue -color_path red
 - 31-May-2022 search the web for python gui lib and find one that supports pixel plotting for drawing the maze
+    - [x] 12-Jun-2022 add: gui basic layout
     - buttons and animation control
+    - 10-06-2022 chg: stylize gui: https://www.youtube.com/watch?v=axMG3fkIhO4
+- 12-06-2022 arch model-view-controller architecture implementation 
+    - 12-06-2022 arch: model i mainden ayirma
 - 31-May-2022 fix broken mazes or defense
+- 05-Jun-2022 fix py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
 
 # Problems
-- 05-Jun-2022  py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
+- tkinter: grid kullaninca objeleri saga yaslayamiyorum.
+- tkinter: pack kullaninca margin veremiyorum.
 
 # Keys - Discretized Actions 1.1
 - org: organization, decisions, notebook changes
@@ -39,6 +45,8 @@
 - push
 
 # LOG
+- 12-Jun-2022 0.14.2    wip: gui arch problem: gui-logic communication [todo] model i main den ayir.
+- 10-Jun-2022 0.14.1    wip: gui learning: widgets: frames, buttons, labels
 - 09-Jun-2022 0.14      add: command line argument: opt red/green/blue color selection for obstacle and path
 - 31-May-2022 0.13      add: command line argument: opt select search algorithm df|bf
 - 31-May-2022 0.12      add: command line argument: opt data path

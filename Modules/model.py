@@ -5,22 +5,6 @@ from curses import wrapper              # :: wrapper
 import queue                            # :: queue data structure
 import time                             # :: for implementing delay
 from argparse import ArgumentParser     # :: to add command line arguments 
-from Modules import gui                 # :: self gui definition
-# import sys                            # :: to add command line arguments
-
-
-#==== Test Data
-maze = [
-    ["#","#","#","#","#","#","O","#","#"],
-    ["#"," "," "," "," "," "," "," ","#"],
-    ["#"," ","#","#"," ","#","#"," ","#"],
-    ["#"," ","#"," "," "," ","#"," ","#"],
-    ["#"," ","#"," ","#"," ","#"," ","#"],
-    ["#"," ","#"," ","#"," ","#"," ","#"],
-    ["#"," ","#"," ","#"," ","#","#","#"],
-    ["#"," "," "," "," "," "," "," ","#"],
-    ["#","#","#","#","#","#","#","X","#"]
-]
 
 # ==== Functions
 def read_input(file_path):
@@ -136,67 +120,8 @@ def select_color(color=None):
             return curses.color_pair(3)
     return None
 
+
+
+# ==== Variables
+
 # ==== Main
-def main(stdscr):   # :: standard output screen
-
-    # :: variables
-    input = maze
-
-    # == argument decleration
-    parser = ArgumentParser(description='Visualize path in MxN Maze')
-    
-    # :: value params
-    parser.add_argument('-t', metavar='delay', type=float,
-                    help='delay time on visualization in seconds')
-
-    parser.add_argument('-d', metavar='data', type=str,
-                    help='data path for visualization')
-
-    # :: binary params
-    parser.add_argument('-df', nargs='?', const=1,       
-                    help='apply depth first search')
-
-    parser.add_argument('-bf', nargs='?', const=1,        
-                    help='apply breadth first search')
-
-    # :: discrete params
-    parser.add_argument('-cp', type=str,
-                        choices=['red', "green", "blue"],
-                        help="choose path color for maze")
-
-    parser.add_argument('-co', type=str,
-                        choices=['red', "green", "blue"],
-                        help="choose obstacle color for maze")
-    
-    args = parser.parse_args()
-
-    # todo validate args
-    # == arg validation data
-    if read_input(args.d) != None:
-        input = adapt_input(read_input(args.d))
-
-    # :: creating colors
-    color_path, color_obs = None, None
-    if args.cp != None:
-        color_path = select_color(args.cp)
-    if color_path == None:
-        color_path = select_color('green')
-    #
-    if args.co != None:
-        color_obs = select_color(args.co)
-    if color_obs == None:
-        color_obs = select_color('blue')
-
-
-    # == Build gui test
-    # gui.run()
-
-    # return
-    # == calling main algorithm
-    find_path(input, stdscr, args.t, args.df, color_path, color_obs)
-    stdscr.getch()
-
-# ==== Initialize
-def run():
-    wrapper(main)
-run()
