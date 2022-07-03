@@ -5,6 +5,9 @@
 - python tkinter tutorial
     https://www.youtube.com/watch?v=YXPyB4XeYLA&t=2740s
 
+- model-view-controller implementation [4]
+    https://www.youtube.com/watch?v=MwMRUr1a3YM
+
 # Questions | Keywords
 - command line arguments
 - titlebar | gui
@@ -49,4 +52,7 @@
 - <custom title bar>
     - https://github.com/Terranova-Python/Tkinter-Menu-Bar/blob/main/main.py
 
-- <tkinter: size and position of widget>
+
+- <tkinter: change color of text in text widget>
+    - https://www.geeksforgeeks.org/change-the-color-of-certain-words-in-the-tkinter-text-widget/
+    - 

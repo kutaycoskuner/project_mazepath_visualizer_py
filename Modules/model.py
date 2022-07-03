@@ -6,6 +6,11 @@ import queue                            # :: queue data structure
 import time                             # :: for implementing delay
 from argparse import ArgumentParser     # :: to add command line arguments 
 
+# ==== Classes
+class Model:
+    def __init__(self, controller):
+        self.controller = controller
+
 # ==== Functions
 def read_input(file_path):
     if file_path != None:
@@ -119,8 +124,6 @@ def select_color(color=None):
         if color == "blue":
             return curses.color_pair(3)
     return None
-
-
 
 # ==== Variables
 

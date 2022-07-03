@@ -12,6 +12,7 @@
 - 31-May-2022 search the web for python gui lib and find one that supports pixel plotting for drawing the maze
     - [x] 12-Jun-2022 add: gui basic layout
     - buttons and animation control
+    - tkinter: text: print in color
     - 10-06-2022 chg: stylize gui: https://www.youtube.com/watch?v=axMG3fkIhO4
 - 12-06-2022 arch model-view-controller architecture implementation 
     - 12-06-2022 arch: model i mainden ayirma
@@ -45,7 +46,9 @@
 - push
 
 # LOG
-- 12-Jun-2022 0.14.2    wip: gui arch problem: gui-logic communication [todo] model i main den ayir.
+- 03-Jul-2022 0.14.4    wip: view elemanlari view icinde olusturuldu. [todo] view controller iletisimi
+- 24-Jun-2022 0.14.3    wip: view class ini implement etmeye calisiyorum.
+- 12-Jun-2022 0.14.2    wip: gui arch problem: gui-logic communication 
 - 10-Jun-2022 0.14.1    wip: gui learning: widgets: frames, buttons, labels
 - 09-Jun-2022 0.14      add: command line argument: opt red/green/blue color selection for obstacle and path
 - 31-May-2022 0.13      add: command line argument: opt select search algorithm df|bf
