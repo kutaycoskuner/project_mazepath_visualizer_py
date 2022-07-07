@@ -16,7 +16,12 @@
 
 # Algorithms
 
-# Theory
+# Theory Concepts
+- refactoring       | arka planda mimari degisiklik yapma
+- technical death   | ilerki senden zaman borc al, time cost artiyor
+- unit test
+- integration test
+
 
 # Notes
 - gui tasarimi uzerine arama yapiyorum

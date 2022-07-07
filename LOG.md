@@ -18,12 +18,14 @@
     - 12-06-2022 arch: model i mainden ayirma
 - 31-May-2022 fix broken mazes or defense
 - 05-Jun-2022 fix py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
+- 07-Jul-2022 upg: color ifleri map e cevir
+- 07-Jul-2022 org: vsc hizlandir kod navigasyonu
 
 # Problems
 - tkinter: grid kullaninca objeleri saga yaslayamiyorum.
 - tkinter: pack kullaninca margin veremiyorum.
 
-# Keys - Discretized Actions 1.1
+# Keys - Discretized Actions 1.2
 - org: organization, decisions, notebook changes
 - arch: architectural, framework change, tryout
 
@@ -32,7 +34,7 @@
 
 - del: deleted
 - fix: fix a bug or problem
-- upg: update, upgraded, progressed
+- upg: update, upgraded, progressed, optimize
 - chg: stylistic change
 
 - std: study, learn, test
@@ -46,7 +48,8 @@
 - push
 
 # LOG
-- 03-Jul-2022 0.14.4    wip: view elemanlari view icinde olusturuldu. [todo] view controller iletisimi
+- 07-Jul-2022 0.14.5    wip: controller/model i guisiz calistirma [todo] controller in icinde kalan bolumu model e aktar
+- 03-Jul-2022 0.14.4    wip: view elemanlari view icinde olusturuldu.
 - 24-Jun-2022 0.14.3    wip: view class ini implement etmeye calisiyorum.
 - 12-Jun-2022 0.14.2    wip: gui arch problem: gui-logic communication 
 - 10-Jun-2022 0.14.1    wip: gui learning: widgets: frames, buttons, labels

@@ -18,25 +18,29 @@ class View(tk.Tk):
     col_white = "#ffffff"
     col_test = "#ccc"
     # :: padding
-    cnstPad = 10
+    cnstPad = 25
 
     # == constructor
     def __init__(self, controller):
         # :: inherit from tk
         super().__init__() 
         #
-        # self.controller = controller
+        self.controller = controller
         #
-        # self.title('Potato')
-        self.value_var = tk.StringVar()
+        self.title('Potato')
         #
         # self._crt_titlebar()
         self._crt_main_frame()
-        # self._crt_entry()
+        # self._crt_io()
         self._crt_ctrl_buttons()
 
+        # test 
+        self.value = tk.StringVar()
+        self._crt_testentry()
+        # test end
+
     # == elements
-    def main(self):
+    def init(self):
         self.geometry("720x480")
         # self.resizeable(False, False)
         # self.overrideredirect(True) # turn off title bar, geometry
@@ -61,48 +65,38 @@ class View(tk.Tk):
     def _crt_main_frame(self):
         # :: main window
         self.frm_main = tk.Frame(self, bg=self.col_darkGray2, relief="raised", bd=0, highlightthickness=0)
-        self.frm_main.pack(fill='both', expand=1)
+        self.frm_main.pack(fill='both', expand=1, padx=self.cnstPad, pady=self.cnstPad)
+        #
+        # self.main_frm = ttk.Frame(self)
+        # self.main_frm.pack(padx=self.cnstPad, pady=self.cnstPad)
+
+    def _crt_io(self):
         # :: input output screen
         txt_io = tk.Text(self.frm_main, bg=self.col_darkGray3, fg=self.col_hellGray1, bd=1, highlightthickness=0)
         txt_io.pack(pady=10)
         # :: report line
         lbl_report = tk.Label(self.frm_main, bg="gray", width=60)
         lbl_report.pack()
-        #
-        # self.main_frm = ttk.Frame(self)
-        # self.main_frm.pack(padx=self.cnstPad, pady=self.cnstPad)
 
     def _crt_ctrl_buttons(self):
         frm_ctrl = tk.Frame(self.frm_main, bg=self.col_darkGray2, relief="raised", bd=0, highlightthickness=0)
         frm_ctrl.pack()
         #
-        btn_toStart = tk.Button(frm_ctrl, text="Start", command=self.onbtn_Start)
+        btn_toStart = tk.Button(frm_ctrl, text="Start", command=self.controller.onbtn_Start)
         btn_toStart.pack(side="left", padx=10)
-        btn_toEnd = tk.Button(frm_ctrl, text="End", command=self.onbtn_End)
+        btn_toEnd = tk.Button(frm_ctrl, text="End", command=self.controller.onbtn_End)
         btn_toEnd.pack(side="left", padx=10)
-        btn_prev = tk.Button(frm_ctrl, text="prev", command=self.onbtn_Prev)
+        btn_prev = tk.Button(frm_ctrl, text="prev", command=self.controller.onbtn_Prev)
         btn_prev.pack(side="left", padx=10)   
-        btn_next = tk.Button(frm_ctrl, text="next", command=self.onbtn_Next)
+        btn_next = tk.Button(frm_ctrl, text="next", command=self.controller.onbtn_Next)
         btn_next.pack(side="left", padx=10)
 
-    def onbtn_Start(self):
-        print('hello world')
+    def _crt_testentry(self):
+        ent = ttk.Entry(self.frm_main, textvariable=self.value)
+        ent.pack()
 
-    def onbtn_End(self):
-        pass
+    def update_monitor(self, new):
+        print(new)
+        self.value.set(new)
 
-    def onbtn_Next(self):
-        pass
-
-    def onbtn_Prev(self):
-        pass
-
-# ==== Functions
-# def onbtn_Start(): # todo button naming convention | onBtn_start
-#     lines = model.read_input("data/maze0.txt")
-#     for line in lines:
-#         for char in line:
-#             txt_io.insert(END, char + " ")
-#             # return
-#         txt_io.insert(END, '\n')
 

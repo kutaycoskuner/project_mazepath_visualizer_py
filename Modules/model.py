@@ -8,8 +8,31 @@ from argparse import ArgumentParser     # :: to add command line arguments
 
 # ==== Classes
 class Model:
-    def __init__(self, controller):
+    def __init__(self, args, controller):
+        self.args = args
         self.controller = controller
+
+    def init(self):
+        pass
+        # self.find_path(input, stdscr, args.t, args.df, color_path, color_obs)
+        
+
+    def read_input(self, file_path):
+        if file_path != None:
+            try:
+                file = open(file_path)
+            except IOError:
+                print('I could not access the file')
+                return None
+            else:
+                with file as data:
+                    lines = []
+                    for line in data:
+                        lines.append([])
+                        for char in line:
+                            if char != "\n" and char != " ":
+                                lines[-1].append(char)
+                return lines
 
 # ==== Functions
 def read_input(file_path):
@@ -111,12 +134,14 @@ def adapt_input(input, start="0", end="1", open=".", closed="#"):
     return input
 
 def select_color(color=None):
+    # todo color u map e cevir
     color_red = curses.init_pair(1,curses.COLOR_RED, curses.COLOR_BLACK)
     color_green = curses.init_pair(2,curses.COLOR_GREEN, curses.COLOR_BLACK)
     color_blue = curses.init_pair(3,curses.COLOR_BLUE, curses.COLOR_BLACK)
 
     if color != None:
-        color = color.lower()
+        if type(color) is str:
+            color = color.lower()
         if color == "red":
             return curses.color_pair(1)
         if color == "green":
@@ -124,7 +149,3 @@ def select_color(color=None):
         if color == "blue":
             return curses.color_pair(3)
     return None
-
-# ==== Variables
-
-# ==== Main
