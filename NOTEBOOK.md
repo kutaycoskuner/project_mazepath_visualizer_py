@@ -33,6 +33,9 @@
         - scale to show position on steps
         - go to start, step back step forward, go to end
 
+- git
+    - git status
+
 - argument types
     - binary | discrete | value
     - mandatory | optional

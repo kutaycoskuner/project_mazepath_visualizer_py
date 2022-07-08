@@ -14,11 +14,11 @@
     - buttons and animation control
     - tkinter: text: print in color
     - 10-06-2022 chg: stylize gui: https://www.youtube.com/watch?v=axMG3fkIhO4
+- [x] 09-Jul-2022 07-Jul-2022 upg: color ifleri map e cevir
 - 12-06-2022 arch model-view-controller architecture implementation 
     - 12-06-2022 arch: model i mainden ayirma
 - 31-May-2022 fix broken mazes or defense
 - 05-Jun-2022 fix py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
-- 07-Jul-2022 upg: color ifleri map e cevir
 - 07-Jul-2022 org: vsc hizlandir kod navigasyonu
 
 # Problems
@@ -48,7 +48,8 @@
 - push
 
 # LOG
-- 07-Jul-2022 0.14.5    wip: controller/model i guisiz calistirma [todo] controller in icinde kalan bolumu model e aktar
+- 09-Jul-2022 0.14.6    wip: controller in icinde kalan model parcasini model e aktardim 00.28; 
+- 07-Jul-2022 0.14.5    wip: controller/model i guisiz calistirma
 - 03-Jul-2022 0.14.4    wip: view elemanlari view icinde olusturuldu.
 - 24-Jun-2022 0.14.3    wip: view class ini implement etmeye calisiyorum.
 - 12-Jun-2022 0.14.2    wip: gui arch problem: gui-logic communication 

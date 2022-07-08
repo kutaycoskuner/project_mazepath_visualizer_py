@@ -1,11 +1,11 @@
 #
 # ==== Libraries
-from Modules import controller   as ctrl  # :: self gui definition
+from src import controller as ctrl  # :: self gui definition
 
 # ==== Main
 def Main(): 
     
-    ctrl.run()
+    ctrl.main()
 
 # ==== Initialize
 if __name__ == "__main__":

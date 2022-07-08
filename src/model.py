@@ -1,22 +1,90 @@
 #
+# ============================================================================= 
 # ==== Libraries
+# ============================================================================= 
 import curses                           # :: main module
-from curses import wrapper              # :: wrapper
 import queue                            # :: queue data structure
 import time                             # :: for implementing delay
 from argparse import ArgumentParser     # :: to add command line arguments 
 
-# ==== Classes
-class Model:
-    def __init__(self, args, controller):
-        self.args = args
-        self.controller = controller
+# == Disabled
+from curses import wrapper              # :: wrapper
 
-    def init(self):
-        pass
-        # self.find_path(input, stdscr, args.t, args.df, color_path, color_obs)
+
+# ============================================================================= 
+# ==== Classes
+# =============================================================================
+class Args:
+    def __init__(self):
+        self.args = None
+        self.crt_Args()
+
+    def crt_Args(self):
+        # == argument decleration
+        parser = ArgumentParser(description='Visualize path in MxN Maze')
+        # :: 1 delay in seconds
+        parser.add_argument('-t', metavar='delay', type=float,
+                        help='delay time on visualization in seconds')
+        # :: 2 data
+        parser.add_argument('-d', metavar='data', type=str,
+                        help='data path for visualization')
+        # :: 3 depth first
+        parser.add_argument('-df', nargs='?', const=1,       
+                        help='apply depth first search')
+        # :: 4 breadth first
+        parser.add_argument('-bf', nargs='?', const=1,        
+                        help='apply breadth first search')
+        # :: 5 path color
+        parser.add_argument('-cp', type=str,
+                            choices=['red', "green", "blue"],
+                            help="choose path color for maze")
+        # :: 6 path obstacle
+        parser.add_argument('-co', type=str,
+                            choices=['red', "green", "blue"],
+                            help="choose obstacle color for maze")
+        self.args = parser.parse_args()
+
+    def validate(self):
+        # :: 1: time
+        if self.args.t == None:
+            self.args.t = .2
+        # todo 2: data
+        if read_input(self.args.d) != None:
+            pass
+            # input = Model.adapt_input(Model.read_input(self.args.d))
+        # :: 5: path color
+        if self.args.cp != None:
+            self.args.cp = select_color(self.args.cp)
+        else:
+            self.args.cp = select_color('green')
+        # :: 6: obstacle color
+        if self.args.co != None:
+            self.args.co = select_color(self.args.co)
+        else:
+            self.args.co = select_color('blue')
+        return True
         
 
+class Model:
+    def __init__(self, controller):
+        def start_curses():
+            self.stdscr = curses.initscr()
+            curses.start_color()
+        start_curses()
+
+        self.args = Args()
+        self.controller = controller
+        
+    def start(self, input):
+        if self.args.validate():
+            find_path(input, 
+                self.stdscr, 
+                self.args.args.t, 
+                self.args.args.df, 
+                self.args.args.cp, 
+                self.args.args.co)
+            self.stdscr.getch()
+            
     def read_input(self, file_path):
         if file_path != None:
             try:
@@ -34,7 +102,9 @@ class Model:
                                 lines[-1].append(char)
                 return lines
 
+# ============================================================================= 
 # ==== Functions
+# =============================================================================
 def read_input(file_path):
     if file_path != None:
         try:
@@ -134,18 +204,20 @@ def adapt_input(input, start="0", end="1", open=".", closed="#"):
     return input
 
 def select_color(color=None):
-    # todo color u map e cevir
-    color_red = curses.init_pair(1,curses.COLOR_RED, curses.COLOR_BLACK)
-    color_green = curses.init_pair(2,curses.COLOR_GREEN, curses.COLOR_BLACK)
-    color_blue = curses.init_pair(3,curses.COLOR_BLUE, curses.COLOR_BLACK)
-
+    #
+    curses.init_pair(1,curses.COLOR_RED, curses.COLOR_BLACK)
+    curses.init_pair(2,curses.COLOR_GREEN, curses.COLOR_BLACK)
+    curses.init_pair(3,curses.COLOR_BLUE, curses.COLOR_BLACK)
+    #
+    color_map = {
+        'red': curses.color_pair(1),
+        'green': curses.color_pair(2),
+        'blue': curses.color_pair(3),
+    }
+    #
     if color != None:
         if type(color) is str:
             color = color.lower()
-        if color == "red":
-            return curses.color_pair(1)
-        if color == "green":
-            return curses.color_pair(2)
-        if color == "blue":
-            return curses.color_pair(3)
+        if color in color_map:
+            return color_map[color] 
     return None

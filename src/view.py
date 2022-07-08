@@ -1,12 +1,18 @@
 #
-# ==== Libraries
+# ============================================================================= 
+# ==== Library
+# =============================================================================
 # from tkinter import *
 import tkinter as tk
 from tkinter import ttk
-# from tkinter import scrolledtext                   # :: gui library
-from Modules import model as model
+from src import model as model
 
+# ==== Disabled Library
+# from tkinter import scrolledtext                   # :: gui library
+
+# ============================================================================= 
 # ==== Classes
+# =============================================================================
 class View(tk.Tk):
 
     # == Variables
@@ -40,7 +46,7 @@ class View(tk.Tk):
         # test end
 
     # == elements
-    def init(self):
+    def start(self):
         self.geometry("720x480")
         # self.resizeable(False, False)
         # self.overrideredirect(True) # turn off title bar, geometry
