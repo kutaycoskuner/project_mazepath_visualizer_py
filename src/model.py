@@ -14,76 +14,19 @@ from curses import wrapper              # :: wrapper
 # ============================================================================= 
 # ==== Classes
 # =============================================================================
-class Args:
-    def __init__(self):
-        self.args = None
-        self.crt_Args()
-
-    def crt_Args(self):
-        # == argument decleration
-        parser = ArgumentParser(description='Visualize path in MxN Maze')
-        # :: 1 delay in seconds
-        parser.add_argument('-t', metavar='delay', type=float,
-                        help='delay time on visualization in seconds')
-        # :: 2 data
-        parser.add_argument('-d', metavar='data', type=str,
-                        help='data path for visualization')
-        # :: 3 depth first
-        parser.add_argument('-df', nargs='?', const=1,       
-                        help='apply depth first search')
-        # :: 4 breadth first
-        parser.add_argument('-bf', nargs='?', const=1,        
-                        help='apply breadth first search')
-        # :: 5 path color
-        parser.add_argument('-cp', type=str,
-                            choices=['red', "green", "blue"],
-                            help="choose path color for maze")
-        # :: 6 path obstacle
-        parser.add_argument('-co', type=str,
-                            choices=['red', "green", "blue"],
-                            help="choose obstacle color for maze")
-        self.args = parser.parse_args()
-
-    def validate(self):
-        # :: 1: time
-        if self.args.t == None:
-            self.args.t = .2
-        # todo 2: data
-        if read_input(self.args.d) != None:
-            pass
-            # input = Model.adapt_input(Model.read_input(self.args.d))
-        # :: 5: path color
-        if self.args.cp != None:
-            self.args.cp = select_color(self.args.cp)
-        else:
-            self.args.cp = select_color('green')
-        # :: 6: obstacle color
-        if self.args.co != None:
-            self.args.co = select_color(self.args.co)
-        else:
-            self.args.co = select_color('blue')
-        return True
-        
-
 class Model:
-    def __init__(self, controller):
-        def start_curses():
-            self.stdscr = curses.initscr()
-            curses.start_color()
-        start_curses()
-
-        self.args = Args()
+    def __init__(self, controller, args):
         self.controller = controller
-        
-    def start(self, input):
-        if self.args.validate():
+        self.args = args
+
+    def start(self, stdscr, input):
             find_path(input, 
-                self.stdscr, 
+                stdscr, 
                 self.args.args.t, 
                 self.args.args.df, 
                 self.args.args.cp, 
                 self.args.args.co)
-            self.stdscr.getch()
+            stdscr.getch()
             
     def read_input(self, file_path):
         if file_path != None:

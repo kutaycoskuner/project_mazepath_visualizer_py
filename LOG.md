@@ -4,22 +4,25 @@
 # Todo
 - [x] 31-May-2022 implement core algorithm
 - [x] 31-May-2022 set up git repository
-- [p] 31-May-2022 data driven input
+- [x] 31-May-2022 data driven input
     - [x] 31-May-2022 add command line option to specify sleep timer. ex: -sleep 0.3
     - [x] 31-May-2022 add command line option to speify maze layout via text file -in ".data/maze1.txt" 
     - [x] 31-May-2022 add clo to specify search strategy. ex: -dfs, -bfs
     - [x] 09-Jun-2022 31-May-2022 add clo color option. ex: -color_maze blue -color_path red
-- 31-May-2022 search the web for python gui lib and find one that supports pixel plotting for drawing the maze
+    - [x] 09-Jul-2022 add command line gui option
+- [p] 09-Jul-2022 31-May-2022 search the web for python gui lib and find one that supports pixel plotting for drawing the maze
     - [x] 12-Jun-2022 add: gui basic layout
-    - buttons and animation control
-    - tkinter: text: print in color
+    - [x] 09-Jul-2022 tkinter: text: print in color | print in pixel
+    - button functions and animation control
     - 10-06-2022 chg: stylize gui: https://www.youtube.com/watch?v=axMG3fkIhO4
+    - 09-Jul-2022 size/animation sliders
 - [x] 09-Jul-2022 07-Jul-2022 upg: color ifleri map e cevir
-- 12-06-2022 arch model-view-controller architecture implementation 
-    - 12-06-2022 arch: model i mainden ayirma
+- [x] 09-Jul-2022 12-06-2022 arch model-view-controller architecture implementation 
 - 31-May-2022 fix broken mazes or defense
 - 05-Jun-2022 fix py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
 - 07-Jul-2022 org: vsc hizlandir kod navigasyonu
+- 09-Jul-2022 org: documentation yaz
+
 
 # Problems
 - tkinter: grid kullaninca objeleri saga yaslayamiyorum.
@@ -48,6 +51,7 @@
 - push
 
 # LOG
+- 09-Jul-2022 0.14.7    wip: cla gui 02.11; pixel output with canvas 03.10;
 - 09-Jul-2022 0.14.6    wip: controller in icinde kalan model parcasini model e aktardim 00.28; 
 - 07-Jul-2022 0.14.5    wip: controller/model i guisiz calistirma
 - 03-Jul-2022 0.14.4    wip: view elemanlari view icinde olusturuldu.

@@ -14,35 +14,87 @@ from Data import test as test           # :: test maze
 # ============================================================================= 
 # ==== Classes
 # ============================================================================= 
+class Args:
+    def __init__(self):
+        self.args = None
+        self.crt_Args()
+        self.validate()
+
+    def crt_Args(self):
+        # == argument decleration
+        parser = ArgumentParser(description='Visualize path in MxN Maze')
+        # :: 1 delay in seconds
+        parser.add_argument('-t', metavar='delay', type=float,
+                        help='delay time on visualization in seconds')
+        # :: 2 data
+        parser.add_argument('-d', metavar='data', type=str,
+                        help='data path for visualization')
+        # :: 3 depth first
+        parser.add_argument('-df', nargs='?', const=1,       
+                        help='apply depth first search')
+        # :: 4 breadth first
+        parser.add_argument('-bf', nargs='?', const=1,        
+                        help='apply breadth first search')
+        # :: 5 path color
+        parser.add_argument('-cp', type=str,
+                            choices=['red', "green", "blue"],
+                            help="choose path color for maze")
+        # :: 6 path obstacle
+        parser.add_argument('-co', type=str,
+                            choices=['red', "green", "blue"],
+                            help="choose obstacle color for maze")
+        # :: 7 add gui
+        parser.add_argument('-gui', nargs='?', const=1,        
+                        help='use gui instead of command line')
+        # :: create args
+        self.args = parser.parse_args()
+
+    def validate(self):
+        # :: 1: time
+        if self.args.t == None:
+            self.args.t = .2
+        # todo 2: data
+        if Model.read_input(self.args.d) != None:
+            pass
+            # input = Model.adapt_input(Model.read_input(self.args.d))
+        # :: 5: path color
+        if self.args.cp != None:
+            self.args.cp = Model.select_color(self.args.cp)
+        else:
+            self.args.cp = Model.select_color('green')
+        # :: 6: obstacle color
+        if self.args.co != None:
+            self.args.co = Model.select_color(self.args.co)
+        else:
+            self.args.co = Model.select_color('blue')
+
 class Controller:
     def __init__(self):
-        def init_curses():
+        def start_curses():
             self.stdscr = curses.initscr()
             curses.start_color()
-
-        init_curses()
-        self.model = Model.Model(self)
+        start_curses()
+        #
+        self.args = Args()
+        self.model = Model.Model(self, self.args)
         self.view = View.View(self)
+
 
     def start(self):
         input = test.maze
-        self.model.start(input)
-        # self.view.start()
+        # :: select inteface
+        if self.args.args.gui:
+            self.view.start()
+        else:
+            self.model.start(self.stdscr, input)
+
 
     def onbtn_Start(self):
-        # :: model e aktar veriyi al
-        result = self.model.read_input('Data/maze0.txt')
-        # :: view e veriyi gonder
-        self.view.update_monitor(result)
-        # 
-        # lines = model.read_input("data/maze0.txt")
-        #       for line in lines:
-        #         for char in line:
-        #             txt_io.insert(END, char + " ")
-        #             # return
-        #         txt_io.insert(END, '\n')
+        result = self.model.read_input('Data/maze0.txt') # :: model e aktar veriyi al
+        self.view.update_monitor(result)  # :: view e veriyi gonder
 
     def onbtn_End(self):
+        # todo if validate colorize
         pass
 
     def onbtn_Next(self):
