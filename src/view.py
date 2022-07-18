@@ -44,6 +44,7 @@ class View(tk.Tk):
 
         # test 
         self.value = tk.StringVar()
+        self.slideCounter = 0
         # self._crt_testentry()
         # test end
 
@@ -119,8 +120,12 @@ class View(tk.Tk):
         color_map = {
             '#': self.col_vi,
             '.': self.col_darkGray1,
+            ' ': self.col_darkGray1,
             '0': self.col_blue,
-            '1': self.col_blue
+            'O': self.col_blue,
+            '1': self.col_blue,
+            'X': self.col_blue,
+
         }
 
         for line in input_maze:

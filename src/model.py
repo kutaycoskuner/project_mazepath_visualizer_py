@@ -5,7 +5,9 @@
 import curses                           # :: main module
 import queue                            # :: queue data structure
 import time                             # :: for implementing delay
+import copy                             # :: copy parameter
 from argparse import ArgumentParser     # :: to add command line arguments 
+from library import Queue as Que        # :: self queue
 
 # == Disabled
 from curses import wrapper              # :: wrapper
@@ -20,7 +22,7 @@ class Model:
         self.args = args
 
     def start(self, stdscr, input):
-            find_path(input, 
+            find_path_cli(input, 
                 stdscr, 
                 self.args.args.t, 
                 self.args.args.df, 
@@ -85,7 +87,7 @@ def find_linked(maze, row, col):
 
     return linked
 
-def find_path(maze, stdscr, delay, df, color_path, color_obs):
+def find_path_cli(maze, stdscr, delay, df, color_path, color_obs):
     start = "O"
     end = "X"
     start_pos = find_start(maze, start)
@@ -100,17 +102,24 @@ def find_path(maze, stdscr, delay, df, color_path, color_obs):
     nodeQue.put((start_pos, [start_pos]))           # :: node, path
     visited = set()
 
+    steps = [maze]
+    # counter = 0
     while not nodeQue.empty():
+        # counter += 1
         current_pos, path = nodeQue.get()
         row, col = current_pos
         
-        stdscr.clear()  # :: clear entire screen
-        print_maze(maze, stdscr, color_path, color_obs,  path)
-        stdscr.refresh()
-        time.sleep(delay)
-        
-        if maze[row][col] == end:
-            return path
+        if True:
+            stdscr.clear()  # :: clear entire screen
+            print_maze(maze, stdscr, color_path, color_obs,  path)
+            stdscr.refresh()
+            time.sleep(delay)
+            #
+            # print(maze[row][col], path)
+            if maze[row][col] == end:
+                return path
+        else: 
+            steps.append(produce_path(maze, path))
 
         links = find_linked(maze, row, col)
         for link in links:
@@ -125,6 +134,65 @@ def find_path(maze, stdscr, delay, df, color_path, color_obs):
             nodeQue.put((link, new_path))
             visited.add(link)
 
+def find_path_gui(maze):
+    start = "O"
+    end = "X"
+    start_pos = find_start(maze, start)
+    
+    if True:
+        delay = 0.0
+    # todo df/bf ayari yap
+    if False:
+        nodeQue = queue.LifoQueue()
+    else:
+        nodeQue = Que.Queue()
+    
+    nodeQue.push((start_pos, [start_pos]))           # :: node, path
+    visited = set()
+    visited.add(start_pos)
+
+    steps = []
+    counter = 0
+    while not nodeQue.empty():
+        counter += 1
+        current_pos, path = nodeQue.peek()
+        nodeQue.pop()
+        row, col = current_pos
+        # path listesine ekleme
+        steps.append(produce_path(maze, path))
+        # cozume geldiysek bitir
+        if maze[row][col] == end:
+            break
+
+        visited.add(current_pos)
+        links = find_linked(maze, row, col)
+        
+        for link in links:
+            if link in visited:
+                continue
+
+            row, col = link
+            if maze[row][col] == "#":
+                continue
+
+            new_path = path + [link]
+            nodeQue.push((link, new_path))
+                
+    return steps
+
+def check_blocked(maze, row, col, visited):
+    links = find_linked(maze, row, col)
+    blocked = True
+    for link in links:
+        if link in visited:
+            continue
+        row, col = link
+        if maze[row][col] == "#":
+            continue
+        blocked = False
+
+    return blocked
+
 def print_maze(maze, stdscr, color_path, color_obs, path=[]):
     for ii, row in enumerate(maze):
         for jj, value in enumerate(row):
@@ -132,6 +200,33 @@ def print_maze(maze, stdscr, color_path, color_obs, path=[]):
                 stdscr.addstr(ii, jj*2, "X", color_path)
             else:    
                 stdscr.addstr(ii, jj*2, value, color_obs)
+
+def print_2d_array(maze):
+    for ii, row in enumerate(maze):
+        print(row)
+
+def produce_path(maze, path=[], pathfinding=None):
+    no_edit = {"#", "O", "X"}
+    # print(path)
+    if pathfinding is None:
+        pathfinding = copy.deepcopy(maze)
+    for ii, row in enumerate(maze):
+        for jj, value in enumerate(row):
+            if (ii, jj) in path and (maze[ii][jj] not in no_edit):
+                pathfinding[ii][jj] = "1"
+    return pathfinding
+
+def revert_path(maze, path=[], visited=[]):
+    for ii, cell in enumerate(reversed(path)):
+        row, col = cell
+        clear = check_blocked(maze, row, col, visited)
+        if clear:
+            maze[row][col] = ' '
+        else:
+            break
+
+def reset_path(maze, path=[]):
+    pass
 
 def adapt_input(input, start="0", end="1", open=".", closed="#"):
     for ii, line in enumerate(input):
@@ -164,3 +259,52 @@ def select_color(color=None):
         if color in color_map:
             return color_map[color] 
     return None
+
+# def find_path_gui(maze):
+#     start = "O"
+#     end = "X"
+#     start_pos = find_start(maze, start)
+    
+#     if True:
+#         delay = 0.0
+#     # todo df/bf ayari yap
+#     if False:
+#         nodeQue = queue.LifoQueue()
+#     else:
+#         nodeQue = queue.Queue()
+    
+#     nodeQue.put((start_pos, [start_pos]))           # :: node, path
+#     visited = set()
+#     visited.add(start_pos)
+
+#     steps = []
+#     counter = 0
+#     while not nodeQue.empty():
+#         counter += 1
+#         current_pos, path = nodeQue.get()
+#         row, col = current_pos
+        
+#         steps.append(produce_path(maze, path))
+
+#         if maze[row][col] == end:
+#             break
+#         visited.add(current_pos)
+#         links = find_linked(maze, row, col)
+        
+#         blocked = True
+#         for link in links:
+#             if link in visited:
+#                 continue
+
+#             row, col = link
+#             if maze[row][col] == "#":
+#                 continue
+
+#             blocked = False
+#             new_path = path + [link]
+#             nodeQue.put((link, new_path))
+        
+#         if blocked:
+#             revert_path(maze, path, visited)
+                
+#     return steps

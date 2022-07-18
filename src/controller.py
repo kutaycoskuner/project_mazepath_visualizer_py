@@ -3,10 +3,12 @@
 # ==== Libraries
 # ============================================================================= 
 import curses                           # :: main module
+import copy
 from argparse import ArgumentParser     # :: to add command line arguments 
-from src import view as View        # :: self gui definition
-from src import model as Model      # :: logic
+from src import view as View            # :: self gui definition
+from src import model as Model          # :: logic
 from Data import test as test           # :: test maze
+
 
 # ==== Disabled Library
 # from curses import wrapper              # :: wrapper 
@@ -92,16 +94,28 @@ class Controller:
     def onbtn_Start(self):
         result = self.model.read_input('Data/maze0.txt') # :: model e aktar veriyi al
         self.view.update_monitor(result)  # :: view e veriyi gonder
+        self.view.slideCounter = 0
 
     def onbtn_End(self):
+        input = copy.deepcopy(test.maze)
+        path_list = Model.find_path_gui(input)
+        self.view.slideCounter = len(path_list)-1
+        self.view.update_monitor(path_list[self.view.slideCounter])
         # todo if validate colorize
-        pass
 
     def onbtn_Next(self):
-        pass
+        input = copy.deepcopy(test.maze)
+        path_list = Model.find_path_gui(input)
+        if self.view.slideCounter < len(path_list):
+            self.view.slideCounter += 1
+        self.view.update_monitor(path_list[self.view.slideCounter])
 
     def onbtn_Prev(self):
-        pass
+        input = copy.deepcopy(test.maze)
+        path_list = Model.find_path_gui(input)
+        if self.view.slideCounter > 0:
+            self.view.slideCounter -= 1
+        self.view.update_monitor(path_list[self.view.slideCounter])
 
 # ============================================================================= 
 # ==== Start

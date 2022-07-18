@@ -13,6 +13,18 @@
 - titlebar | gui
 
 # Structure
+- gui
+    - input type
+        - select file
+        - enter data
+            - instruction screen
+    - controls
+        - go to start
+        - go to end
+        - reset input
+        - next, prev
+        - slider
+
 
 # Algorithms
 
@@ -24,6 +36,12 @@
 
 
 # Notes
+- event driven
+
+- reference, copy
+
+- deepcopy, shallow copy
+
 - gui tasarimi uzerine arama yapiyorum
     - search keywords
         - gui elements, layout, outline, design
@@ -42,6 +60,17 @@
 
 - python gui libraries
     - tkinter
+
+
+- Neden mimari kullaniyoruz.
+    - modullere ayirip yeniden kullanma
+    - goruntu ile mantigi ayirma
+        - guvenlik acisindan saglikli
+        - birden fazla goruntu
+            - protected variations
+            - alteration
+            - decoupling
+    - entry point debugger kullanmamizi engelliyor
 
 # How to
 - <parsing command line arguments>
@@ -64,3 +93,8 @@
 - <tkinter: change color of text in text widget>
     - https://www.geeksforgeeks.org/change-the-color-of-certain-words-in-the-tkinter-text-widget/
     - 
+
+
+
+# Shortcuts
+- if statement or true

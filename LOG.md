@@ -13,15 +13,18 @@
 - [p] 09-Jul-2022 31-May-2022 search the web for python gui lib and find one that supports pixel plotting for drawing the maze
     - [x] 12-Jun-2022 add: gui basic layout
     - [x] 09-Jul-2022 tkinter: text: print in color | print in pixel
-    - button functions and animation control
+    - [x] 19-Jul-2022 button functions and animation control
     - 10-06-2022 chg: stylize gui: https://www.youtube.com/watch?v=axMG3fkIhO4
     - 09-Jul-2022 size/animation sliders
 - [x] 09-Jul-2022 07-Jul-2022 upg: color ifleri map e cevir
 - [x] 09-Jul-2022 12-06-2022 arch model-view-controller architecture implementation 
+- [x] 17-Jul-2022 gui ye path aktarma -> pass copy/reference, debugger algoritma problem, path silme
 - 31-May-2022 fix broken mazes or defense
+- 19-Jul-2022 add son halde rengi degistir
 - 05-Jun-2022 fix py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
 - 07-Jul-2022 org: vsc hizlandir kod navigasyonu
 - 09-Jul-2022 org: documentation yaz
+- 13-Jul-2022 add: farkli dille calisabilen view? electron?
 
 
 # Problems
@@ -51,6 +54,7 @@
 - push
 
 # LOG
+- 19-Jul-2022 0.14.8    wip: gui-logic interaction, working buttons;
 - 09-Jul-2022 0.14.7    wip: cla gui 02.11; pixel output with canvas 03.10;
 - 09-Jul-2022 0.14.6    wip: controller in icinde kalan model parcasini model e aktardim 00.28; 
 - 07-Jul-2022 0.14.5    wip: controller/model i guisiz calistirma
