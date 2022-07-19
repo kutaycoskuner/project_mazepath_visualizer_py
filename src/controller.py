@@ -117,6 +117,9 @@ class Controller:
             self.view.slideCounter -= 1
         self.view.update_monitor(path_list[self.view.slideCounter])
 
+    def onbtn_Browse(self):
+        return
+
 # ============================================================================= 
 # ==== Start
 # ============================================================================= 

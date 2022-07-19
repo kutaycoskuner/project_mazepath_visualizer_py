@@ -13,18 +13,24 @@
 - titlebar | gui
 
 # Structure
+- gui space naming
+    - title bar: top main frame controls
+    - outliner frame: selection of options
+    - main frame: most user interaction
+
+
 - gui
-    - input type
+    - input type screen
         - select file
         - enter data
-            - instruction screen
-    - controls
+            - input check data | mark unrecognized characters
+        - instruction screen
+    - maze control screen
         - go to start
         - go to end
-        - reset input
         - next, prev
         - slider
-
+        - new input
 
 # Algorithms
 

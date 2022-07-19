@@ -145,9 +145,9 @@ def find_path_gui(maze):
     if False:
         nodeQue = queue.LifoQueue()
     else:
-        nodeQue = Que.Queue()
+        nodeQue = queue.Queue()
     
-    nodeQue.push((start_pos, [start_pos]))           # :: node, path
+    nodeQue.put((start_pos, [start_pos]))           # :: node, path
     visited = set()
     visited.add(start_pos)
 
@@ -155,13 +155,14 @@ def find_path_gui(maze):
     counter = 0
     while not nodeQue.empty():
         counter += 1
-        current_pos, path = nodeQue.peek()
-        nodeQue.pop()
+        current_pos, path = nodeQue.get()
+        # nodeQue.pop()
         row, col = current_pos
         # path listesine ekleme
         steps.append(produce_path(maze, path))
         # cozume geldiysek bitir
         if maze[row][col] == end:
+            steps[-1] = final_path(steps[-1], path, visited)
             break
 
         visited.add(current_pos)
@@ -176,7 +177,7 @@ def find_path_gui(maze):
                 continue
 
             new_path = path + [link]
-            nodeQue.push((link, new_path))
+            nodeQue.put((link, new_path))
                 
     return steps
 
@@ -216,14 +217,15 @@ def produce_path(maze, path=[], pathfinding=None):
                 pathfinding[ii][jj] = "1"
     return pathfinding
 
-def revert_path(maze, path=[], visited=[]):
+def final_path(maze, path=[], visited=[]):
+    last = copy.deepcopy(maze)
+    bond = {'O','X','0','1'}
     for ii, cell in enumerate(reversed(path)):
-        row, col = cell
-        clear = check_blocked(maze, row, col, visited)
-        if clear:
-            maze[row][col] = ' '
-        else:
-            break
+        row, col = cell        
+        if last[row][col] in bond:
+            last[row][col] = '2'
+    return last
+
 
 def reset_path(maze, path=[]):
     pass
@@ -259,52 +261,3 @@ def select_color(color=None):
         if color in color_map:
             return color_map[color] 
     return None
-
-# def find_path_gui(maze):
-#     start = "O"
-#     end = "X"
-#     start_pos = find_start(maze, start)
-    
-#     if True:
-#         delay = 0.0
-#     # todo df/bf ayari yap
-#     if False:
-#         nodeQue = queue.LifoQueue()
-#     else:
-#         nodeQue = queue.Queue()
-    
-#     nodeQue.put((start_pos, [start_pos]))           # :: node, path
-#     visited = set()
-#     visited.add(start_pos)
-
-#     steps = []
-#     counter = 0
-#     while not nodeQue.empty():
-#         counter += 1
-#         current_pos, path = nodeQue.get()
-#         row, col = current_pos
-        
-#         steps.append(produce_path(maze, path))
-
-#         if maze[row][col] == end:
-#             break
-#         visited.add(current_pos)
-#         links = find_linked(maze, row, col)
-        
-#         blocked = True
-#         for link in links:
-#             if link in visited:
-#                 continue
-
-#             row, col = link
-#             if maze[row][col] == "#":
-#                 continue
-
-#             blocked = False
-#             new_path = path + [link]
-#             nodeQue.put((link, new_path))
-        
-#         if blocked:
-#             revert_path(maze, path, visited)
-                
-#     return steps
