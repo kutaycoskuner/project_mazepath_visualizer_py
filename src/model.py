@@ -47,6 +47,23 @@ class Model:
                                 lines[-1].append(char)
                 return lines
 
+    def print_2d_array(self, maze):
+        for ii, row in enumerate(maze):
+            print(row)
+
+    def adapt_input(self, input, start="0", end="1", open=".", closed="#"):
+        for ii, line in enumerate(input):
+            for jj, char in enumerate(line):
+                if char == start:
+                    input[ii][jj] = "O"
+                if char == end:
+                    input[ii][jj] = "X"
+                if char == open:
+                    input[ii][jj] = " "
+                if char == closed:
+                    input[ii][jj] = "#"
+        return input
+
 # ============================================================================= 
 # ==== Functions
 # =============================================================================
@@ -201,10 +218,6 @@ def print_maze(maze, stdscr, color_path, color_obs, path=[]):
                 stdscr.addstr(ii, jj*2, "X", color_path)
             else:    
                 stdscr.addstr(ii, jj*2, value, color_obs)
-
-def print_2d_array(maze):
-    for ii, row in enumerate(maze):
-        print(row)
 
 def produce_path(maze, path=[], pathfinding=None):
     no_edit = {"#", "O", "X"}

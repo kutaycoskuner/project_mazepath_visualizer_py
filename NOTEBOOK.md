@@ -98,7 +98,9 @@
 
 - <tkinter: change color of text in text widget>
     - https://www.geeksforgeeks.org/change-the-color-of-certain-words-in-the-tkinter-text-widget/
-    - 
+
+- <tkinter: open file dialog for input data>
+    - https://www.pythontutorial.net/tkinter/tkinter-open-file-dialog/
 
 
 

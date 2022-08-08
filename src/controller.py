@@ -3,11 +3,12 @@
 # ==== Libraries
 # ============================================================================= 
 import curses                           # :: main module
-import copy
+import copy                             # :: for shallow copy
 from argparse import ArgumentParser     # :: to add command line arguments 
 from src import view as View            # :: self gui definition
 from src import model as Model          # :: logic
 from Data import test as test           # :: test maze
+from tkinter import filedialog as fd    # :: tkinter file dialog for input file
 
 
 # ==== Disabled Library
@@ -81,6 +82,8 @@ class Controller:
         self.model = Model.Model(self, self.args)
         self.view = View.View(self)
 
+        self.path_list = None
+
 
     def start(self):
         input = test.maze
@@ -92,33 +95,44 @@ class Controller:
 
 
     def onbtn_Start(self):
-        result = self.model.read_input('Data/maze0.txt') # :: model e aktar veriyi al
+        if self.path_list == None:
+            result = self.model.read_input('Data/maze0.txt') # :: model e aktar veriyi al
         self.view.update_monitor(result)  # :: view e veriyi gonder
         self.view.slideCounter = 0
 
     def onbtn_End(self):
-        input = copy.deepcopy(test.maze)
-        path_list = Model.find_path_gui(input)
-        self.view.slideCounter = len(path_list)-1
-        self.view.update_monitor(path_list[self.view.slideCounter])
+        if self.path_list == None:
+            self.create_path_list()
+        self.view.slideCounter = len(self.path_list)-1
+        self.view.update_monitor(self.path_list[self.view.slideCounter])
         # todo if validate colorize
 
     def onbtn_Next(self):
-        input = copy.deepcopy(test.maze)
-        path_list = Model.find_path_gui(input)
-        if self.view.slideCounter < len(path_list):
+        if self.path_list == None:
+            self.create_path_list()
+        if self.view.slideCounter < len(self.path_list):
             self.view.slideCounter += 1
-        self.view.update_monitor(path_list[self.view.slideCounter])
+        self.view.update_monitor(self.path_list[self.view.slideCounter])
 
     def onbtn_Prev(self):
-        input = copy.deepcopy(test.maze)
-        path_list = Model.find_path_gui(input)
+        if self.path_list == None:
+            self.create_path_list()
         if self.view.slideCounter > 0:
             self.view.slideCounter -= 1
-        self.view.update_monitor(path_list[self.view.slideCounter])
+        self.view.update_monitor(self.path_list[self.view.slideCounter])
 
     def onbtn_Browse(self):
-        return
+        filename = fd.askopenfilename()
+        lines = self.model.read_input(filename)
+        result = self.model.adapt_input(lines)
+        test.maze = result
+        self.view.update_monitor(result)  # :: view e veriyi gonder
+        self.view.slideCounter = 0
+
+    def create_path_list(self):
+        input = copy.deepcopy(test.maze)
+        self.path_list = Model.find_path_gui(input)
+
 
 # ============================================================================= 
 # ==== Start

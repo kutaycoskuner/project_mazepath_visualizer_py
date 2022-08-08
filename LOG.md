@@ -10,15 +10,17 @@
     - [x] 31-May-2022 add clo to specify search strategy. ex: -dfs, -bfs
     - [x] 09-Jun-2022 31-May-2022 add clo color option. ex: -color_maze blue -color_path red
     - [x] 09-Jul-2022 add command line gui option
+    - 08-Aug-2022 validate input
+    - 08-Aug-2022 gui send package optimization
 - [p] 09-Jul-2022 31-May-2022 search the web for python gui lib and find one that supports pixel plotting for drawing the maze
     - [x] 12-Jun-2022 add: gui basic layout
     - [x] 09-Jul-2022 tkinter: text: print in color | print in pixel
     - [x] 19-Jul-2022 button functions and 
     - [x] 19-Jul-2022 add son halde rengi degistir
+    - [x] 09-Aug-2022 19-Jul-2022 browse button select file
     - 10-Jun-2022 chg: stylize gui: https://www.youtube.com/watch?v=axMG3fkIhO4
     - 09-Jul-2022 size/animation sliders
     - 19-Jul-2022 playing animation on time
-    - 19-Jul-2022 browse button select file
     - 19-Jul-2022 add: kullaniciya maze yazdirma opsiyonu
 - [x] 09-Jul-2022 07-Jul-2022 upg: color ifleri map e cevir
 - [x] 09-Jul-2022 12-06-2022 arch model-view-controller architecture implementation 
@@ -27,7 +29,9 @@
 - 05-Jun-2022 fix py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
 - 07-Jul-2022 org: vsc hizlandir kod navigasyonu
 - 09-Jul-2022 org: documentation yaz
+    - [x] 07-Aug-2022 documentation outline
 - 13-Jul-2022 add: farkli dille calisabilen view? electron?
+- 09-Aug-2022 fix: bir maze import edip ustune yenisini import edince bir oncekini silmiyor
 
 # Problems
 - tkinter: grid kullaninca objeleri saga yaslayamiyorum.
@@ -56,6 +60,8 @@
 - push
 
 # LOG
+- 09-Aug-2022 0.15      add: gui browse button
+- 07-Aug-2022 0.14.10   wip: readme documentation outliner
 - 19-Jul-2022 0.14.9    wip: changing color of gui at solution step
 - 19-Jul-2022 0.14.8    wip: gui-logic interaction, working buttons;
 - 09-Jul-2022 0.14.7    wip: cla gui 02.11; pixel output with canvas 03.10;

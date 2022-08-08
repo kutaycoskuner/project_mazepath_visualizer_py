@@ -1,2 +1,34 @@
 # Project-MazePathVisualizer-Python
-Python Intermediate Project | Maze Path Visualizer
+- Proje abstract | ne yapiyor
+- Metadata
+    - tipi 
+    - baslangic tarihi
+
+# Description
+
+
+
+# Installation and Use
+- Installation
+    - download
+    - install dependencies
+- Use
+    - How to Run
+
+# Controls
+- cli
+- gui
+
+# Feature List
+
+# Display
+- Screenshots, gifs
+
+# References
+- references
+    - learning
+        - videos
+        - books
+        - support
+    - libraries
+        - links to 3d party libraries and what they do
