@@ -6,6 +6,7 @@
 import tkinter as tk
 from tkinter import ttk
 from src import model as model
+import time
 
 # ==== Disabled Library
 # from tkinter import scrolledtext                   # :: gui library
@@ -48,6 +49,7 @@ class View(tk.Tk):
         # test 
         self.value = tk.StringVar()
         self.slideCounter = 0
+        self.stopAnimation = False
         # self._crt_testentry()
         # test end
 
@@ -107,12 +109,16 @@ class View(tk.Tk):
         #
         btn_toStart = tk.Button(frm_ctrl, text="Start", command=self.controller.onbtn_Start)
         btn_toStart.pack(side="left", padx=self.c_padx)
-        btn_toEnd = tk.Button(frm_ctrl, text="End", command=self.controller.onbtn_End)
-        btn_toEnd.pack(side="left", padx=self.c_padx)
         btn_prev = tk.Button(frm_ctrl, text="prev", command=self.controller.onbtn_Prev)
         btn_prev.pack(side="left", padx=self.c_padx)   
+        btn_play = tk.Button(frm_ctrl, text="Play", command=self.controller.onbtn_Play)
+        btn_play.pack(side="left", padx=self.c_padx)   
+        btn_stop = tk.Button(frm_ctrl, text="Stop", command=self.controller.onbtn_Stop)
+        btn_stop.pack(side="left", padx=self.c_padx)  
         btn_next = tk.Button(frm_ctrl, text="next", command=self.controller.onbtn_Next)
         btn_next.pack(side="left", padx=self.c_padx)
+        btn_toEnd = tk.Button(frm_ctrl, text="End", command=self.controller.onbtn_End)
+        btn_toEnd.pack(side="left", padx=self.c_padx)
 
     def _crt_input(self):
         btn_toStart = tk.Button(self.frm_main, text="Browse", command=self.controller.onbtn_Browse)
@@ -124,6 +130,9 @@ class View(tk.Tk):
 
     def update_monitor(self, input_maze):
         cnvs = self.cnvs        
+        cnvs.delete('all')
+        # cnvs.update()  # needed to do one pic at a time
+        # time.sleep(1000)
         # cnvs.create_text(100,10, text="test", fill=self.col_blue)
         # cnvs.create_text(100,20, text="test", fill=self.col_vi)
 
@@ -159,4 +168,12 @@ class View(tk.Tk):
         #         self.txt_io.insert('end', char + " ")
         #     self.txt_io.insert('end', '\n')
         # self.txt_io.config(state='disabled') # :: freeze widget
+
+    def animation(self, input_maze, delay):
+        # for ii in range(len(input_maze)-1):
+        while not self.stopAnimation and self.slideCounter < len(input_maze):    
+            self.cnvs.update()
+            self.slideCounter += 1
+            self.cnvs.after(delay, self.update_monitor(input_maze[self.slideCounter]))
+
 

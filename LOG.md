@@ -18,20 +18,20 @@
     - [x] 19-Jul-2022 button functions and 
     - [x] 19-Jul-2022 add son halde rengi degistir
     - [x] 09-Aug-2022 19-Jul-2022 browse button select file
+    - [x] 10-Aug-2022 19-Jul-2022 play / stop animation on time
     - 10-Jun-2022 chg: stylize gui: https://www.youtube.com/watch?v=axMG3fkIhO4
     - 09-Jul-2022 size/animation sliders
-    - 19-Jul-2022 playing animation on time
     - 19-Jul-2022 add: kullaniciya maze yazdirma opsiyonu
 - [x] 09-Jul-2022 07-Jul-2022 upg: color ifleri map e cevir
 - [x] 09-Jul-2022 12-06-2022 arch model-view-controller architecture implementation 
 - [x] 17-Jul-2022 gui ye path aktarma -> pass copy/reference, debugger algoritma problem, path silme
+- [x] 10-Aug-2022 09-Aug-2022 fix: bir maze import edip ustune yenisini import edince bir oncekini silmiyor
 - 31-May-2022 fix broken mazes or defense
 - 05-Jun-2022 fix py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
 - 07-Jul-2022 org: vsc hizlandir kod navigasyonu
 - 09-Jul-2022 org: documentation yaz
     - [x] 07-Aug-2022 documentation outline
 - 13-Jul-2022 add: farkli dille calisabilen view? electron?
-- 09-Aug-2022 fix: bir maze import edip ustune yenisini import edince bir oncekini silmiyor
 
 # Problems
 - tkinter: grid kullaninca objeleri saga yaslayamiyorum.
@@ -60,6 +60,7 @@
 - push
 
 # LOG
+- 10-Aug-2022 0.16      add: animation play/stop; fix: update screen
 - 09-Aug-2022 0.15      add: gui browse button
 - 07-Aug-2022 0.14.10   wip: readme documentation outliner
 - 19-Jul-2022 0.14.9    wip: changing color of gui at solution step

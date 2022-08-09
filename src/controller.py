@@ -9,6 +9,8 @@ from src import view as View            # :: self gui definition
 from src import model as Model          # :: logic
 from Data import test as test           # :: test maze
 from tkinter import filedialog as fd    # :: tkinter file dialog for input file
+import time                             # :: for implementing delay
+
 
 
 # ==== Disabled Library
@@ -96,9 +98,10 @@ class Controller:
 
     def onbtn_Start(self):
         if self.path_list == None:
-            result = self.model.read_input('Data/maze0.txt') # :: model e aktar veriyi al
-        self.view.update_monitor(result)  # :: view e veriyi gonder
+            self.create_path_list()
+
         self.view.slideCounter = 0
+        self.view.update_monitor(self.path_list[self.view.slideCounter])  # :: view e veriyi gonder
 
     def onbtn_End(self):
         if self.path_list == None:
@@ -106,6 +109,18 @@ class Controller:
         self.view.slideCounter = len(self.path_list)-1
         self.view.update_monitor(self.path_list[self.view.slideCounter])
         # todo if validate colorize
+
+    def onbtn_Play(self):
+        self.view.stopAnimation = False
+        if self.path_list == None:
+            self.onbtn_Start()
+        
+        self.view.animation(self.path_list, 300)  # :: view e veriyi gonder
+
+
+    def onbtn_Stop(self):
+        self.view.stopAnimation = True
+        
 
     def onbtn_Next(self):
         if self.path_list == None:
@@ -122,6 +137,7 @@ class Controller:
         self.view.update_monitor(self.path_list[self.view.slideCounter])
 
     def onbtn_Browse(self):
+        self.path_list = None
         filename = fd.askopenfilename()
         lines = self.model.read_input(filename)
         result = self.model.adapt_input(lines)
