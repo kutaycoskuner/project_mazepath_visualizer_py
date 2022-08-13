@@ -19,8 +19,8 @@
     - [x] 19-Jul-2022 add son halde rengi degistir
     - [x] 09-Aug-2022 19-Jul-2022 browse button select file
     - [x] 10-Aug-2022 19-Jul-2022 play / stop animation on time
+    - [x] 13-Aug-2022 09-Jul-2022 animation sliders
     - 10-Jun-2022 chg: stylize gui: https://www.youtube.com/watch?v=axMG3fkIhO4
-    - 09-Jul-2022 size/animation sliders
     - 19-Jul-2022 add: kullaniciya maze yazdirma opsiyonu
 - [x] 09-Jul-2022 07-Jul-2022 upg: color ifleri map e cevir
 - [x] 09-Jul-2022 12-06-2022 arch model-view-controller architecture implementation 
@@ -60,6 +60,7 @@
 - push
 
 # LOG
+- 13-Aug-2022 0.20      add: gui animation slider
 - 10-Aug-2022 0.16      add: animation play/stop; fix: update screen
 - 09-Aug-2022 0.15      add: gui browse button
 - 07-Aug-2022 0.14.10   wip: readme documentation outliner

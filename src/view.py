@@ -46,12 +46,13 @@ class View(tk.Tk):
         self._crt_ctrl_buttons()
         self._crt_input()
 
-        # test 
+        # :: variables
         self.value = tk.StringVar()
         self.slideCounter = 0
         self.stopAnimation = False
+        self.scale_Steps = None
         # self._crt_testentry()
-        # test end
+
 
     # == elements
     def start(self):
@@ -124,6 +125,10 @@ class View(tk.Tk):
         btn_toStart = tk.Button(self.frm_main, text="Browse", command=self.controller.onbtn_Browse)
         btn_toStart.pack(padx=self.c_padx, pady=self.c_padx)
 
+    def _crt_slider(self, steps=10):
+        self.scale_Steps = tk.Scale(self.frm_main, from_=0, to=steps, orient="horizontal", command=self.controller.onslider_Change)
+        self.scale_Steps.pack()
+
     def _crt_testentry(self):
         ent = ttk.Entry(self.frm_main, textvariable=self.value)
         ent.pack()
@@ -165,6 +170,10 @@ class View(tk.Tk):
             x = paddingX
             y += recSize
 
+        if self.scale_Steps != None:
+            self.scale_Steps.set(self.slideCounter)
+        
+
         #         self.txt_io.insert('end', char + " ")
         #     self.txt_io.insert('end', '\n')
         # self.txt_io.config(state='disabled') # :: freeze widget
@@ -175,5 +184,7 @@ class View(tk.Tk):
             self.cnvs.update()
             self.slideCounter += 1
             self.cnvs.after(delay, self.update_monitor(input_maze[self.slideCounter]))
+            if self.scale_Steps:
+                self.scale_Steps.set(self.slideCounter)
 
 
