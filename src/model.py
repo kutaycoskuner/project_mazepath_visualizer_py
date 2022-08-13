@@ -64,6 +64,36 @@ class Model:
                     input[ii][jj] = "#"
         return input
 
+    def validate_input(self, maze):
+        dict = {
+            "O": False,
+            "X": False,
+        }
+        block = "#"
+        set_inner = {"#", " "}
+        maxSize = 20
+
+        if len(maze) > maxSize or len(maze[0]) > maxSize:
+            return False
+
+        for ii, line, in enumerate(maze):
+            for jj, char in enumerate(line):
+                if ii==0 or ii==len(maze)-1 or jj==0 or jj==len(line)-1:
+                    if not char in dict and char != block:
+                        return False
+                    if char in dict:
+                        if dict[char] == False:
+                            dict[char] = True
+                        else:
+                            return False
+                else:
+                    if char not in set_inner:
+                        self.print_2d_array(maze)
+                        print(char)
+                        return False
+
+        return True
+
 # ============================================================================= 
 # ==== Functions
 # =============================================================================

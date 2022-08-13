@@ -137,7 +137,6 @@ class Controller:
         self.view.update_monitor(self.path_list[self.view.slideCounter])
 
     def onbtn_Browse(self):
-
         if self.view.scale_Steps != None:
             self.view.scale_Steps.destroy()
 
@@ -145,7 +144,11 @@ class Controller:
         filename = fd.askopenfilename()
         lines = self.model.read_input(filename)
         result = self.model.adapt_input(lines)
-        test.maze = result
+        if self.model.validate_input(result):
+            test.maze = result
+        else:
+            self.view.update_monitor(False)  # :: view e veriyi gonder
+            return
 
         # :: create slider
         if self.path_list == None:
@@ -153,8 +156,8 @@ class Controller:
         self.view._crt_slider(len(self.path_list)-1)
 
         # :: update monitor
-        self.view.update_monitor(result)  # :: view e veriyi gonder
         self.view.slideCounter = 0
+        self.view.update_monitor(result)  # :: view e veriyi gonder
 
     def onslider_Change(self, value):
         self.view.slideCounter = int(value)

@@ -39,7 +39,7 @@ class View(tk.Tk):
         #
         self.title('Potato')
         #
-        self._crt_titlebar()
+        # self._crt_titlebar()
         # self._crt_ctrl_frame()
         self._crt_main_frame()
         self._crt_output()
@@ -57,7 +57,7 @@ class View(tk.Tk):
     # == elements
     def start(self):
         self.geometry("720x480")
-        # self.resizeable(False, False)
+        self.resizable(False, False)
         # self.overrideredirect(True) # turn off title bar, geometry
         self.title("Mazepath Visualizer")
         self.iconbitmap()
@@ -71,11 +71,11 @@ class View(tk.Tk):
         btn_wndw_ext = tk.Button(frm_title, text="✕", padx=4, pady=2, command=self.destroy, fg=self.col_white, bg=self.col_darkGray1, bd= 0, highlightthickness=0)# &#xE106;
         btn_wndw_ext.pack(side='right')
         #
-        btn_wndw_max = tk.Button(frm_title, text="🗖", padx=4, pady=2, fg=self.col_white, bg=self.col_darkGray1, bd= 0, highlightthickness=0)# &#xE739;"
-        btn_wndw_max.pack(side='right')
+        # btn_wndw_max = tk.Button(frm_title, text="🗖", padx=4, pady=2, fg=self.col_white, bg=self.col_darkGray1, bd= 0, highlightthickness=0)# &#xE739;"
+        # btn_wndw_max.pack(side='right')
         #
-        btn_wndw_min = tk.Button(frm_title, text="—", padx=4, pady=2, fg=self.col_white, bg=self.col_darkGray1, bd= 0, highlightthickness=0)# &#xE949;
-        btn_wndw_min.pack(side='right')
+        # btn_wndw_min = tk.Button(frm_title, text="—", padx=4, pady=2, fg=self.col_white, bg=self.col_darkGray1, bd= 0, highlightthickness=0)# &#xE949;
+        # btn_wndw_min.pack(side='right')
 
     def _crt_ctrl_frame(self):
         # :: main window
@@ -140,6 +140,12 @@ class View(tk.Tk):
         # time.sleep(1000)
         # cnvs.create_text(100,10, text="test", fill=self.col_blue)
         # cnvs.create_text(100,20, text="test", fill=self.col_vi)
+
+        if input_maze == False:
+            text = "False input \nYour maze should be surrounded by #\nContain only one enter '0' and one exit '1'\nInner elements could be either block '#' or path '.'\nMaze should be smaller than 20x20"
+            self.cnvs.create_text(180,120,fill=self.col_white ,font="Times 12",
+                        text=text)
+            return
 
         color = self.col_blue
         recSize = 16

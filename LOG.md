@@ -10,7 +10,7 @@
     - [x] 31-May-2022 add clo to specify search strategy. ex: -dfs, -bfs
     - [x] 09-Jun-2022 31-May-2022 add clo color option. ex: -color_maze blue -color_path red
     - [x] 09-Jul-2022 add command line gui option
-    - 08-Aug-2022 validate input
+    - [x] 14-Aug-2022 08-Aug-2022 gui validate input
     - 08-Aug-2022 gui send package optimization
 - [p] 09-Jul-2022 31-May-2022 search the web for python gui lib and find one that supports pixel plotting for drawing the maze
     - [x] 12-Jun-2022 add: gui basic layout
@@ -26,12 +26,13 @@
 - [x] 09-Jul-2022 12-06-2022 arch model-view-controller architecture implementation 
 - [x] 17-Jul-2022 gui ye path aktarma -> pass copy/reference, debugger algoritma problem, path silme
 - [x] 10-Aug-2022 09-Aug-2022 fix: bir maze import edip ustune yenisini import edince bir oncekini silmiyor
-- 31-May-2022 fix broken mazes or defense
+- [x] 14-Aug-2022 31-May-2022 fix broken mazes or defense
 - 05-Jun-2022 fix py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
 - 07-Jul-2022 org: vsc hizlandir kod navigasyonu
 - 09-Jul-2022 org: documentation yaz
     - [x] 07-Aug-2022 documentation outline
 - 13-Jul-2022 add: farkli dille calisabilen view? electron?
+- 14-Aug-2022 org: code clean up
 
 # Problems
 - tkinter: grid kullaninca objeleri saga yaslayamiyorum.
@@ -60,6 +61,7 @@
 - push
 
 # LOG
+- 14-Aug-2022 0.21      add: gui maze validation
 - 13-Aug-2022 0.20      add: gui animation slider
 - 10-Aug-2022 0.16      add: animation play/stop; fix: update screen
 - 09-Aug-2022 0.15      add: gui browse button
