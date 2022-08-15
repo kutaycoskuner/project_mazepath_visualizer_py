@@ -8,6 +8,14 @@
 - model-view-controller implementation [4]
     https://www.youtube.com/watch?v=MwMRUr1a3YM
 
+- documentation examples
+    - https://www.markdownguide.org/basic-syntax/
+    - https://github.com/google/filament
+    - https://github.com/ocornut/imgui
+    - https://github.com/microsoft/DirectX-Graphics-Samples
+    - https://github.com/GPUOpen-LibrariesAndSDKs/D3D12MemoryAllocator
+    - https://github.com/vilbeyli/VQEngine
+
 # Questions | Keywords
 - command line arguments
 - titlebar | gui

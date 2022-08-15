@@ -59,7 +59,7 @@ class View(tk.Tk):
         self.geometry("720x480")
         self.resizable(False, False)
         # self.overrideredirect(True) # turn off title bar, geometry
-        self.title("Mazepath Visualizer")
+        self.title("Maze Path Visualizer")
         self.iconbitmap()
         self.configure(background=self.col_darkGray1)
         self.mainloop()

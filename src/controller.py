@@ -23,7 +23,6 @@ class Args:
     def __init__(self):
         self.args = None
         self.crt_Args()
-        self.validate()
 
     def crt_Args(self):
         # == argument decleration
@@ -58,10 +57,6 @@ class Args:
         # :: 1: time
         if self.args.t == None:
             self.args.t = .2
-        # todo 2: data
-        if Model.read_input(self.args.d) != None:
-            pass
-            # input = Model.adapt_input(Model.read_input(self.args.d))
         # :: 5: path color
         if self.args.cp != None:
             self.args.cp = Model.select_color(self.args.cp)
@@ -72,6 +67,9 @@ class Args:
             self.args.co = Model.select_color(self.args.co)
         else:
             self.args.co = Model.select_color('blue')
+        # todo 2: data
+        if Model.read_input(self.args.d) != None:
+            return Model.adapt_input(Model.read_input(self.args.d))
 
 class Controller:
     def __init__(self):
@@ -93,8 +91,13 @@ class Controller:
         if self.args.args.gui:
             self.view.start()
         else:
-            self.model.start(self.stdscr, input)
-
+            # todo 2: data
+            if self.args.args.d != None:
+                test.maze = self.args.validate()
+            if test.maze != None:
+                self.model.start(self.stdscr, test.maze)
+            else: 
+                print("could not found the file")
 
     def onbtn_Start(self):
         if self.path_list == None:
@@ -115,7 +118,7 @@ class Controller:
         if self.path_list == None:
             self.onbtn_Start()
         
-        self.view.animation(self.path_list, 300)  # :: view e veriyi gonder
+        self.view.animation(self.path_list, 200)  # :: view e veriyi gonder
 
 
     def onbtn_Stop(self):

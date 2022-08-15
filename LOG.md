@@ -3,6 +3,7 @@
 
 # Todo
 - [x] 31-May-2022 implement core algorithm
+    - 08-Aug-2022 gui send package optimization
 - [x] 31-May-2022 set up git repository
 - [x] 31-May-2022 data driven input
     - [x] 31-May-2022 add command line option to specify sleep timer. ex: -sleep 0.3
@@ -11,7 +12,6 @@
     - [x] 09-Jun-2022 31-May-2022 add clo color option. ex: -color_maze blue -color_path red
     - [x] 09-Jul-2022 add command line gui option
     - [x] 14-Aug-2022 08-Aug-2022 gui validate input
-    - 08-Aug-2022 gui send package optimization
 - [p] 09-Jul-2022 31-May-2022 search the web for python gui lib and find one that supports pixel plotting for drawing the maze
     - [x] 12-Jun-2022 add: gui basic layout
     - [x] 09-Jul-2022 tkinter: text: print in color | print in pixel
@@ -21,24 +21,25 @@
     - [x] 10-Aug-2022 19-Jul-2022 play / stop animation on time
     - [x] 13-Aug-2022 09-Jul-2022 animation sliders
     - 10-Jun-2022 chg: stylize gui: https://www.youtube.com/watch?v=axMG3fkIhO4
-    - 19-Jul-2022 add: kullaniciya maze yazdirma opsiyonu
+    - 19-Jul-2022 add: gui icinden kullaniciya maze yazdirma opsiyonu
 - [x] 09-Jul-2022 07-Jul-2022 upg: color ifleri map e cevir
 - [x] 09-Jul-2022 12-06-2022 arch model-view-controller architecture implementation 
 - [x] 17-Jul-2022 gui ye path aktarma -> pass copy/reference, debugger algoritma problem, path silme
 - [x] 10-Aug-2022 09-Aug-2022 fix: bir maze import edip ustune yenisini import edince bir oncekini silmiyor
 - [x] 14-Aug-2022 31-May-2022 fix broken mazes or defense
-- 05-Jun-2022 fix py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
-- 07-Jul-2022 org: vsc hizlandir kod navigasyonu
-- 09-Jul-2022 org: documentation yaz
+- [x] 15-Aug-2022 05-Jun-2022 fix py main.py -t .3 -d "data/maze0.txt" -df | data belirtilmesine ragmen df girildiginde verilen maze i gormezden geliyor.
+- [x] 15-Aug-2022 09-Jul-2022 org: readme yaz
     - [x] 07-Aug-2022 documentation outline
+- 07-Jul-2022 org: vsc hizlandir kod navigasyonu
 - 13-Jul-2022 add: farkli dille calisabilen view? electron?
 - 14-Aug-2022 org: code clean up
+- 14-Aug-2022 add: create executable?
 
 # Problems
 - tkinter: grid kullaninca objeleri saga yaslayamiyorum.
 - tkinter: pack kullaninca margin veremiyorum.
 
-# Keys - Discretized Actions 1.2
+# Keys - Discretized Actions 1.3
 - org: organization, decisions, notebook changes
 - arch: architectural, framework change, tryout
 
@@ -54,13 +55,15 @@
 - wip: work in progress
 - mix: multiple additions
 
-# Push procedure 1.3
-- add log
+# Push procedure checklist 1.4
 - check todo
+- add log
+- change readme version and date
 - change time log
 - push
 
 # LOG
+- 15-Aug-2022 1.00      add: readme documentation; cli data input validation
 - 14-Aug-2022 0.21      add: gui maze validation
 - 13-Aug-2022 0.20      add: gui animation slider
 - 10-Aug-2022 0.16      add: animation play/stop; fix: update screen
