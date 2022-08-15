@@ -49,7 +49,7 @@
 - del: deleted
 - fix: fix a bug or problem
 - upg: update, upgraded, progressed, optimize
-- chg: stylistic change
+- chg: stylistic change, typo
 
 - std: study, learn, test
 - wip: work in progress
@@ -63,6 +63,7 @@
 - push
 
 # LOG
+- 15-Aug-2022 1.01      chg: readme typo; removed in between return marks
 - 15-Aug-2022 1.00      add: readme documentation; cli data input validation
 - 14-Aug-2022 0.21      add: gui maze validation
 - 13-Aug-2022 0.20      add: gui animation slider

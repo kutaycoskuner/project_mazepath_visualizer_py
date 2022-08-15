@@ -3,7 +3,7 @@ This is a portfolio/study project that finds pathways in given MxN (max 20x20) m
 
 | Project Started | Last Update | Version |
 | :-------------- | :---------- | :-----: |
-| 31 May 2022     | 15 Aug 2022 | 1.00    |
+| 31 May 2022     | 15 Aug 2022 | 1.01    |
 
 # Table of Contents
 1. [Description](#description)
@@ -28,16 +28,15 @@ Some of the practiced concepts are listed below:
 - **Debugging**
 
 
-[↑](#table-of-contents)
-# Installation and Use
+# Installation and Usage
 - **Installation**
     - Install Dependencies
         - Install [Python 3.xx](https://www.python.org/downloads/)
         - Install [Windows Curses](https://pypi.org/project/windows-curses/) 
-            - After installing python use `pip install windows-curses` on your command line interface
+            - Alternatively after installing python use `pip install windows-curses` on command line
     - Download [Maze Path Visualizer](https://github.com/kutaycoskuner/Project-MazePathVisualizer-Python/archive/refs/heads/main.zip)
 - **Usage**
-    - Open project file in your console and use cli commands `py main.py` or `py main.py -gui`
+    - Open project folder in your console and use cli commands `py main.py` or `py main.py -gui`
     - It is possible to create your own input data and pass it to the program. Input needs to be defined as below:
         - Entry point of maze `0` exit is `1`
         - Obstacles defined by `#` path defined by `.`
@@ -55,10 +54,9 @@ Some of the practiced concepts are listed below:
             # # # # # # # # 1 #
             ```
 
-[↑](#table-of-contents)
+
 # Controls
 ## | Command Line Interface (CLI) Controls
----  
 | Command | Description | Example Usage |
 | :------ | :---------- | :------------ |
 | `-t <seconds>`  | adding time deplay between maze progression steps | `py main.py -t 0.3` |
@@ -71,7 +69,7 @@ Some of the practiced concepts are listed below:
 Example combined usage:  
 ```py main.py -d "/Data/maze2.txt"  -t 0.3 -df```
 
-[↑](#table-of-contents)
+
 ## | Graphical User Interface (GUI) Controls
 | Button | Function |
 | :----- | :------ |
@@ -96,7 +94,6 @@ Example combined usage:
 - [ ] Data input inside GUI
 
 
-[↑](#table-of-contents)
 # Display
 ```
 Version 1.00 cli
@@ -112,7 +109,6 @@ Version 1.00 gui display
 ![0.16 gui](display/version%201.00%20gui.png)
 
 
-[↑](#table-of-contents)
 # References
 - Learning
     - Videos
@@ -127,5 +123,4 @@ Version 1.00 gui display
 - Libraries
     - [windows-curses 2.3.0](https://pypi.org/project/windows-curses/)
 
-
-[↑](#table-of-contents)
+[Return to top](#maze-path-visualizer)
