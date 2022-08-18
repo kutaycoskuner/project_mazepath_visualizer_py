@@ -3,11 +3,11 @@ This is a portfolio/study project that finds pathways in given MxN (max 20x20) m
 
 | Project Started | Last Update | Version |
 | :-------------- | :---------- | :-----: |
-| 31 May 2022     | 15 Aug 2022 | 1.01    |
+| 31 May 2022     | 18 Aug 2022 | 1.02    |
 
 # Table of Contents
 1. [Description](#description)
-2. [Installation and Use](#installation-and-use)
+2. [Installation and Usage](#installation-and-usage)
 3. [Controls](#controls)
 4. [Feature List](#feature-list)
 5. [Display](#display)
@@ -23,8 +23,6 @@ Some of the practiced concepts are listed below:
 - **Search Algorithms**: Breath-first- Depth-first search 
 - **Model**: Data driven, Event driven
 - **Architecture**: Model-view-controller
-- **Documentation reading and Library Usage**: curses, tkInter
-- **Documentation writing and Logging**
 - **Debugging**
 
 
